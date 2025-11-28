@@ -220,7 +220,7 @@ main() {
 All done!
 - PostgreSQL/PostGIS installed and running with remote access enabled
 - SUPERUSER role '$PG_ROLE' with dedicated database '$PG_DATABASE' ready
-- Swap allocated (2 GiB at /swapfile)
+- Swap allocated
 - UFW active: SSH (22/tcp) and PostgreSQL (5432/tcp) allowed, everything else incoming denied
 
 Security note:
