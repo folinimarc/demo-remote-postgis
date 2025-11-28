@@ -69,7 +69,7 @@ In this example, we will import open geospatial data from the city of Zürich, S
 4. Query Postgis database to return number of public parking spots and handicap parking spots per district (using `psql` or any other PostGIS-compatible client):
     ```sql
     SELECT sk.kname AS district,
-        COUNT(pp.anzahl_oeffentliche_pp) AS total_public_parking,
+        SUM(pp.anzahl_oeffentliche_pp) AS total_public_parking,
         SUM(pp.behindertenparkplatz) AS total_handicap_parking
     FROM zh_stadtkreise sk
     LEFT JOIN zh_parkhaus pp ON ST_Contains(sk.geometry, pp.geometry)
@@ -84,7 +84,7 @@ In this example, we will import open geospatial data from the city of Zürich, S
     /vsistdout/ \
     PG:"host=$MY_DROPLET_ID user=$MY_POSTGRES_ROLE dbname=$MY_POSTGIS_DB password=$MY_SECRET_POSTGRES_PASSWORD" \
     -sql "SELECT sk.kname AS district,
-                COUNT(pp.anzahl_oeffentliche_pp) AS total_public_parking,
+                SUM(pp.anzahl_oeffentliche_pp) AS total_public_parking,
                 SUM(pp.behindertenparkplatz) AS total_handicap_parking
             FROM zh_stadtkreise sk
             LEFT JOIN zh_parkhaus pp ON ST_Contains(sk.geometry, pp.geometry)
