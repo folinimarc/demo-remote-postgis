@@ -19,7 +19,7 @@ Sometimes we want to quickly set up a public PostGIS database for testing or dem
    ```bash
    ssh root@$MY_DROPLET_ID "bash -s -- -r $MY_POSTGRES_ROLE -p '$MY_SECRET_POSTGRES_PASSWORD' -d $MY_POSTGIS_DB" < bootstrap.sh
    ```
-4. That's it! You should now be able to connect to your remote PostGIS database using a PostGIS-compatible client, such as `psql` or `pgAdmin`.
+4. That's it! You should now be able to connect to your remote PostGIS database using a PostGIS-compatible client, such as `psql`, `pgAdmin` or `QGIS`.
 
 
 ## Sample Data Example
@@ -92,3 +92,4 @@ In this example, we will import open geospatial data from the city of Zürich, S
             ORDER BY sk.kname;"
     ``` 
 
+5. How about connecting QGIS directly to your remote PostGIS database to visualize the data? Just add a new PostGIS connection in QGIS using the same connection parameters as above!
