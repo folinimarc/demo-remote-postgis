@@ -40,7 +40,7 @@ In this example, we will import open geospatial data from the city of Zürich, S
    ```
 
 
-2. Import the Zürich Stadtkreise dataset into PostGIS using ogr2ogr:
+2. Import the Zürich Stadtkreise dataset from the city WFS into PostGIS using ogr2ogr:
     ```bash
     ogr2ogr \
     -overwrite \
@@ -53,7 +53,7 @@ In this example, we will import open geospatial data from the city of Zürich, S
     "WFS:https://www.ogd.stadt-zuerich.ch/wfs/geoportal/Stadtkreise?service=WFS&version=1.1.0&request=GetFeature&outputFormat=GeoJSON&typename=adm_stadtkreise_v"
     ```
 
-3. Import the Zürich Public Parking dataset into PostGIS using ogr2ogr:
+3. Import the Zürich Public Parking dataset from the city WFS into PostGIS using ogr2ogr:
     ```bash
     ogr2ogr \
     -overwrite \
