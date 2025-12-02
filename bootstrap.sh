@@ -116,6 +116,12 @@ configure_postgres_remote() {
 
 ensure_swap() {
     local swap_file="/swapfile"
+	local target_mebibytes=$((SWAP_TARGET_BYTES / 1024 / 1024))
+
+	if swapon --show=NAME --noheadings 2>/dev/null | grep -q .; then
+		log "Existing swap detected; skipping swapfile provisioning."
+		return
+	fi
 
     log "Resetting swap configuration..."
 
@@ -127,7 +133,7 @@ ensure_swap() {
         rm -f "$swap_file"
     fi
 
-    log "Allocating new 2 GiB swapfile at $swap_file..."
+	log "Allocating new swapfile at $swap_file (${target_mebibytes} MiB)..."
 
     if ! fallocate -l "$SWAP_TARGET_BYTES" "$swap_file" 2>/dev/null; then
         log "fallocate unavailable; falling back to dd (this may take a bit)."
@@ -143,7 +149,7 @@ ensure_swap() {
         echo "$swap_file none swap sw 0 0" >> /etc/fstab
     fi
 
-    log "Swap setup complete. System now has exactly 2 GiB swap at $swap_file."
+	log "Swap setup complete. System now has swap at $swap_file."
 }
 
 configure_ufw() {
